@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Add build-in repos
-# sudo xbps-install -Sy void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
+sudo xbps-install -Sy void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 
 # Add and enable services
 services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} isc-ntpd tlp dbus elogind`
@@ -9,7 +9,7 @@ sudo xbps-install -Sy socklog-void snooze ntp tlp dbus elogind
 
 for serv in $services; do
 	sudo ln -s /etc/sv/$serv /var/service/
-	# sudo sv up $serv
+	sudo sv up $serv
 done
 
 # Set up weekly fstrim
