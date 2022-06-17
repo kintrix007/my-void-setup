@@ -38,5 +38,12 @@ EOF
 
 
 # Install user packages
-PACKAGES=`sed s/#.*// ./packages`
-xbps-install -y $PACKAGES
+packages=`sed s/#.*// ./sys-packages`
+xbps-install -y $packages
+
+packages=`sed s/#.*// ./flatpak-packages`
+for pack in $packages; do
+	flatpak install flathub $pack -y
+done
+
+
