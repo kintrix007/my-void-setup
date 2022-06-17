@@ -12,7 +12,7 @@ services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} isc-n
 sudo xbps-install -y socklog-void snooze ntp tlp dbus elogind
 
 for serv in $services; do
-	sudo ln -s /etc/sv/$serv /var/service/
+	[[ -f /var/service/$serv ]] || sudo ln -s /etc/sv/$serv /var/service/$serv
 	sudo sv up $serv
 done
 
