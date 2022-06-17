@@ -1,0 +1,25 @@
+# Drivers
+intel-ucode linux-firmware-intel intel-video-accel mesa-intel-dri
+nvidia nv-codec-headers mesa-nouveau-dri
+# mesa-vulkan-radeon linux-firmware-amd
+mesa-dri
+mesa-vaapi mesa-vdpau
+vulkan-loader
+
+# System tools
+xtools
+alacritty
+
+# Utilities
+nvtop
+git
+vim
+htop
+neofetch
+zip unzip
+xz
+
+# Graphical tools
+vlc
+mpv
+
