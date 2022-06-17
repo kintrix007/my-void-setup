@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update xbps
-sudo xbps-install -Suy || sudo xbps-install -y xbps
+sudo xbps-install -Suy || sudo xbps-install -uy xbps
 sudo xbps-install -uy
 
 # Add build-in repos
