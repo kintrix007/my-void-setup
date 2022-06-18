@@ -2,10 +2,11 @@
 
 # Update xbps
 xbps-install -Suy || sudo xbps-install -uy xbps
-xbps-install -uy
+xbps-install -Suy
 
 # Add build-in repos
 xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
+xbps-install -S
 
 # Add and enable services
 services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} isc-ntpd tlp dbus elogind`
@@ -30,7 +31,7 @@ xbps-install -y flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Set up graphical interface
-xbps-install -y xorg xinit ghc xmonad xmonad-contrib dmenu
+xbps-install -y xorg xinit dmenu ghc
 
 cat << EOF > ~/.xinitrc
 exec xmonad
