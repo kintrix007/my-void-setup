@@ -24,7 +24,10 @@ export EDITOR=vim
 PS1='\[\e[1m\]'['\[\e[[92m\]'\u'\[\e[0m\]'@'\[\e[1;92m\]'\h '\[\e[94m\]'\W'\[\e[1m\]']\$ '\[\e[0m\]'
 EOF
 
-
+# Set up xinitrc
+cat << EOF > ~/.xinitrc
+	exec xmonad
+EOF
 
 # Install flatpak packages
 packages=`sed s/#.*// ./flatpak-packages`
