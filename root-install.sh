@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# Set up hu and nl mirrors
+[[ -d /etc/xbps.d ]] || mkdir -p /etc/xbps.d
+
+cat << EOF > /etc/xbps.d/nl-repositories.conf
+repository=https://void.cijber.net/current
+repository=https://void.cijber.net/current/nonfree
+EOF
+
+car << EOF > /etc/xbps.d/hu-repositories.conf.bak
+repository=https://quantum-mirror.hu/mirrors/pub/voidlinux/current
+repository=https://quantum-mirror.hu/mirrors/pub/voidlinux/current/nonfree
+EOF
+
 # Update xbps
 xbps-install -Suy
 if [[ $? != 0 ]]; then
@@ -14,8 +27,8 @@ xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 xbps-install -y git bash-completion
 
 # Add and enable services
-services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} isc-ntpd tlp dbus elogind`
-xbps-install -y socklog-void snooze ntp tlp dbus elogind
+services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} isc-ntpd tlp dbus elogind bluetoothd`
+xbps-install -y socklog-void snooze ntp tlp dbus elogind bluez
 
 for serv in $services; do
 	[[ ! -L /var/service/$serv ]] && ln -s /etc/sv/$serv /var/service/
@@ -46,7 +59,7 @@ echo Adding flathub...
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Install packages for graphical interface
-xbps-install -y xorg xinit dmenu pipewire
+xbps-install -y xorg xinit dmenu pipewire libspa-bluetooth
 
 # Xmonad build dependencies
 xbps-install -y gcc stack ncurses-libtinfo-libs ncurses-libtinfo-devel libX11-devel libXft-devel libXinerama-devel libXrandr-devel libXScrnSaver-devel pkg-config
