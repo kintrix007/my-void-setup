@@ -3,7 +3,7 @@
 # Set up hu and nl mirrors
 [[ -d /etc/xbps.d ]] || mkdir -p /etc/xbps.d
 
-cat << EOF > /etc/xbps.d/nl-repositories.conf
+cat << EOF > /etc/xbps.d/nl-repositories.conf.bak
 repository=https://void.cijber.net/current
 repository=https://void.cijber.net/current/nonfree
 EOF
