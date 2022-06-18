@@ -35,6 +35,7 @@ alias ll='ls -lA'
 #alias firefox='flatpak run org.mozilla.firefox'
 EOF
 
+
 # Set up xinitrc
 cat << EOF > ~/.xinitrc
 	exec xmonad
@@ -45,6 +46,18 @@ packages=`sed s/#.*// ./flatpak-list`
 for pack in $packages; do
 	flatpak install flathub $pack -y
 done
+
+# Setting up graphical session
+mkdir -p ~/.config/xmonad
+pushd ~/.config/xmonad
+# mkdir -p ~/bin
+# cd ~/bin
+git clone https://github.com/xmonad/xmonad
+git clone https://github.com/xmonad/xmonad-contrib
+stack init
+stack install
+#ln -s ~/bin/stack.yaml ~/.config/xmonad
+popd -
 
 echo
 echo ".-------------------------------------------."

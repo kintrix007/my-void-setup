@@ -10,6 +10,9 @@ fi
 # Add build-in repos
 xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 
+# Install some packages
+xbps-install -y git bash-completion
+
 # Add and enable services
 services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} isc-ntpd tlp dbus elogind`
 xbps-install -y socklog-void snooze ntp tlp dbus elogind
@@ -20,8 +23,6 @@ for serv in $services; do
 done
 
 # Set up bash environment
-xbps-install -y bash-completion
-
 cat << EOF > /etc/bash/bashrc.d/bash_completion.sh
 # bash_completion.sh
 
@@ -44,8 +45,9 @@ xbps-install -y flatpak
 echo Adding flathub...
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-# Set up graphical interface
-xbps-install -y xorg xinit dmenu stack
+# Install packages for graphical interface
+xbps-install -y xorg xinit dmenu gcc stack ncurses-libtinfo-libs ncurses-libtinfo-devel libX11-devel libXft-devel libXinerama-devel libXrandr-devel libXScrnSaver-devel pkg-config
+ln -s /lib/libncurses.so.6.* /lib/libtinfo.so.6
 
 # Install user packages
 packages=`sed s/#.*// ./xbps-list`
