@@ -38,7 +38,8 @@ EOF
 
 # Set up xinitrc
 cat << EOF > ~/.xinitrc
-	exec xmonad
+pipewire &
+exec xmonad
 EOF
 
 # Install flatpak packages
@@ -48,16 +49,16 @@ for pack in $packages; do
 done
 
 # Setting up graphical session
+builddir=~/bin
 mkdir -p ~/.config/xmonad
-pushd ~/.config/xmonad
-# mkdir -p ~/bin
-# cd ~/bin
+mkdir -p $builddir
+pushd $builddir
 git clone https://github.com/xmonad/xmonad
 git clone https://github.com/xmonad/xmonad-contrib
 stack init
 stack install
-#ln -s ~/bin/stack.yaml ~/.config/xmonad
-popd -
+ln -s $builddir/stack.yaml ~/.config/xmonad
+popd
 
 echo
 echo ".-------------------------------------------."
