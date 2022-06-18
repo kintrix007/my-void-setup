@@ -10,6 +10,7 @@
 xtools
 xterm
 alacritty
+xterm
 
 # Utilities
 git
@@ -20,5 +21,5 @@ zip unzip
 xz
 
 # Graphical tools
-vlc
-mpv
+#vlc
+#mpv
