@@ -31,7 +31,7 @@ services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} isc-n
 xbps-install -y socklog-void snooze ntp tlp dbus elogind bluez
 
 for serv in $services; do
-	[[ ! -L /var/service/$serv ]] && ln -s /etc/sv/$serv /var/service/
+	[[ -L /var/service/$serv ]] || ln -s /etc/sv/$serv /var/service/
 	sv up $serv
 done
 
