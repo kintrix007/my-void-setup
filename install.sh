@@ -22,7 +22,7 @@ cat << EOF > ~/.bashrc
 # Set defaul editor
 export EDITOR=vim
 # Set console prompt
-PS1='\[\e[1m\]'['\[\e[[92m\]'\u'\[\e[0m\]'@'\[\e[1;92m\]'\h '\[\e[94m\]'\W'\[\e[1m\]']\$ '\[\e[0m\]'
+PS1='\[\e[1m\][\[\e[92m\]\u\[\e[0m\]@\[\e[1;92m\]\h \[\e[94m\]\W\[\e[0;1m\]]\$ \[\e[0m\]'
 EOF
 
 # Set up bash aliases
@@ -40,8 +40,16 @@ cat << EOF > ~/.xinitrc
 	exec xmonad
 EOF
 
+# Source bashrc so at least bashrc is immediately active
+. ~/.bashrc
+
 # Install flatpak packages
 packages=`sed s/#.*// ./flatpak-packages`
 for pack in $packages; do
 	flatpak install flathub $pack -y
 done
+
+echo
+echo ".-------------------------------------------."
+echo "| Please reboot to fully apply the changes. |"
+echo "'-------------------------------------------'"

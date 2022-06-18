@@ -9,19 +9,18 @@ fi
 
 # Add build-in repos
 xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
-xbps-install -S
 
 # Add and enable services
 services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} isc-ntpd tlp dbus elogind`
 xbps-install -y socklog-void snooze ntp tlp dbus elogind
 
 for serv in $services; do
-	[[ -f /var/service/$serv ]] || ln -s /etc/sv/$serv /var/service/$serv
+	[[ ! -L /var/service/$serv ]] && ln -s /etc/sv/$serv /var/service/
 	sv up $serv
 done
 
 # Set up bash environment
-xbps-install bash_completion
+xbps-install -y bash-completion
 
 cat << EOF > /etc/bash/bashrc.d/bash_completion.sh
 # bash_completion.sh
@@ -42,6 +41,7 @@ chmod +x /etc/cron.weekly/fstrim
 
 # Set up flatpak
 xbps-install -y flatpak
+echo Adding flathub...
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Set up graphical interface
