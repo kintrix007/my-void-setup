@@ -44,7 +44,7 @@ EOF
 . ~/.bashrc
 
 # Install flatpak packages
-packages=`sed s/#.*// ./flatpak-packages`
+packages=`sed s/#.*// ./flatpak-list`
 for pack in $packages; do
 	flatpak install flathub $pack -y
 done

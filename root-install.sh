@@ -48,5 +48,5 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 xbps-install -y xorg xinit dmenu stack
 
 # Install user packages
-packages=`sed s/#.*// ./sys-packages`
+packages=`sed s/#.*// ./xbps-list`
 xbps-install -y $packages
