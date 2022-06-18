@@ -40,9 +40,6 @@ cat << EOF > ~/.xinitrc
 	exec xmonad
 EOF
 
-# Source bashrc so at least bashrc is immediately active
-. ~/.bashrc
-
 # Install flatpak packages
 packages=`sed s/#.*// ./flatpak-list`
 for pack in $packages; do
