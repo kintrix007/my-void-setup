@@ -32,7 +32,7 @@ cat << EOF > ~/.bash_aliases
 alias ll='ls -lA'
 
 # flatpak aliases
-#alias firefox='flatpak run org.mozilla.firefox'
+alias firefox='flatpak run org.mozilla.firefox'
 EOF
 
 
