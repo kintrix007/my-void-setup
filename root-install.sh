@@ -8,7 +8,7 @@ repository=https://void.cijber.net/current
 repository=https://void.cijber.net/current/nonfree
 EOF
 
-car << EOF > /etc/xbps.d/hu-repositories.conf.bak
+cat << EOF > /etc/xbps.d/hu-repositories.conf.bak
 repository=https://quantum-mirror.hu/mirrors/pub/voidlinux/current
 repository=https://quantum-mirror.hu/mirrors/pub/voidlinux/current/nonfree
 EOF
