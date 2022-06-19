@@ -1,1 +1,2 @@
-Run install.sh as user, it will prompt you for root access
+Run install.sh as user, it will prompt you for root access.
+This is a post-install script, picking up right where void-installer has left off.
