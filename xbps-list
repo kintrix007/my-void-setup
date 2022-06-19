@@ -8,9 +8,7 @@
 
 # System tools
 xtools
-xterm
 alacritty
-xterm
 
 # Utilities
 git
