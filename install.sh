@@ -39,7 +39,7 @@ EOF
 # Set up xinitrc
 cat << EOF > ~/.xinitrc
 pipewire &
-exec xmonad
+exec dbus-run-session -- xmonad
 EOF
 
 # Install flatpak packages
