@@ -59,7 +59,7 @@ echo Adding flathub...
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Install packages for graphical interface
-xbps-install -y xorg xinit dmenu pipewire libspa-bluetooth
+xbps-install -y xorg xinit dmenu xmobar pipewire libspa-bluetooth
 
 # Xmonad build dependencies
 xbps-install -y gcc stack ncurses-libtinfo-libs ncurses-libtinfo-devel libX11-devel libXft-devel libXinerama-devel libXrandr-devel libXScrnSaver-devel pkg-config

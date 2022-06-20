@@ -13,6 +13,7 @@ alacritty
 # Utilities
 git
 vim
+ffmpeg
 htop
 neofetch
 zip unzip
@@ -21,3 +22,4 @@ xz
 # Graphical tools
 #vlc
 #mpv
+#speedcrunch
