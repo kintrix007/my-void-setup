@@ -3,6 +3,11 @@
 # Set up root environment + system packages 
 sudo ./root-install.sh
 
+if [[ $? != 0 ]]; then
+	echo Aborted.
+	exit
+fi
+
 # Set up bash profile
 cat << EOF > ~/.bash_profile
 # .bash_profile
