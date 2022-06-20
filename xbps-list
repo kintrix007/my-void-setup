@@ -12,6 +12,7 @@ alacritty
 
 # Utilities
 git
+github-cli
 vim
 ffmpeg
 htop
