@@ -56,11 +56,17 @@ pipewire &
 exec dbus-run-session -- xmonad
 EOF
 
-# Install flatpak packages
-packages=`sed s/#.*// ./flatpak-list`
-for pack in $packages; do
-	flatpak install flathub $pack -y
-done
+# Add 'xbps-updates' utility script to PATH
+cat << EOF > ~/.local/bin/xbps-updates
+#!/bin/bash
+
+packages=`xbps-install -Sun | tr -s " " | cut -d' ' -f2 | tr $'\n' ' '`
+if [[ "$1" == "-c" ]] || [[ "$1" == "--count" ]]; then
+	echo $packages | wc -w
+else
+	echo $packages
+fi
+EOF
 
 # Setting up graphical session
 builddir=~/bin
@@ -75,7 +81,14 @@ stack install
 ln -s $builddir/stack.yaml ~/.config/xmonad
 popd
 
+# Install flatpak packages
+packages=`sed s/#.*// ./flatpak-list`
+for pack in $packages; do
+	flatpak install flathub $pack -y
+done
+
 echo
 echo ".-------------------------------------------."
 echo "| Please reboot to fully apply the changes. |"
 echo "'-------------------------------------------'"
+
