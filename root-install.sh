@@ -53,6 +53,15 @@ fstrim /
 EOF
 chmod +x /etc/cron.weekly/fstrim
 
+# Set up daily xbps repository syncing
+[[ -d /etc/cron.daily ]] || mkdir /etc/cron.daily/
+cat << EOF > /etc/cron.daily/xbps-sync
+#!/bin/bash
+
+xbps-install -S
+EOF
+chmod +x /etc/cron.daily/xbps-sync
+
 # Set up flatpak
 xbps-install -y flatpak
 echo Adding flathub...
