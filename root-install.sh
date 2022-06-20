@@ -67,4 +67,4 @@ ln -s /lib/libncurses.so.6.* /lib/libtinfo.so.6
 
 # Install user packages
 packages=`sed s/#.*// ./xbps-list`
-xbps-install -y $packages
+xbps-install -y $packages &
