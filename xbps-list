@@ -19,7 +19,20 @@ neofetch
 zip unzip
 xz
 
-# Graphical tools
+## Graphical tools
+
+# Utilities
+#Thunar
+#thunar-volman
+#nomacs
 #vlc
 #mpv
 #speedcrunch
+
+# Graphics
+#zathura
+#gimp
+
+# Development
+#vscode
+#kwrite
