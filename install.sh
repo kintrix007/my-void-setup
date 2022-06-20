@@ -60,6 +60,7 @@ done
 # Setting up graphical session
 builddir=~/bin
 mkdir -p ~/.config/xmonad
+git clone https://github.com/kintrix007/my-xmonad-setup ~/.config/xmonad
 mkdir -p $builddir
 pushd $builddir
 git clone https://github.com/xmonad/xmonad
