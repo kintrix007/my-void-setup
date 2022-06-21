@@ -10,16 +10,11 @@ fi
 
 CONF=./config
 
-# Set up bash profile
+# Copy config files to home directory
 cp -v $CONF/.bash_profile ~/
-
-# Set up bashrc
 cp -v $CONF/.bashrc ~/
-
-# Set up bash aliases
 cp -v $CONF/.bash_aliases ~/
-
-# Set up xinitrc
+cp -v $CONF/.flatpak_aliases ~/
 cp -v $CONF/.xinitrc ~/
 
 # Add 'xbps-updates' utility script to PATH
@@ -43,7 +38,10 @@ popd
 
 # Install flatpak packages
 packages=`sed s/#.*// ./flatpak-list`
-flatpak install flathub $packages -y
+# Installing with a for loop to prevent simply installing 'flathub'
+for $pack in $packages; do
+	flatpak install flathub $pack -y
+done
 
 echo
 echo ".-------------------------------------------."

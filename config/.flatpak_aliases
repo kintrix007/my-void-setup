@@ -1,0 +1,21 @@
+# Management
+flatseal com.github.tchx84.Flatseal
+
+# Internet
+firefox     org.mozilla.firefox
+qutebrowser org.qutebrowser.qutebrowser
+chromium    com.github.Eloston.UngoogledChromium
+discord     com.discordapp.Discord
+
+# Development
+blender     org.blender.Blender
+gitkraken   com.axosoft.GitKraken
+gnome-boxes org.gnome.Boxes
+
+# Office
+libreoffice org.libreoffice.LibreOffice
+onlyoffice  org.onlyoffice.desktopeditors
+
+# Games
+steam  com.valvesoftware.Steam
+heroic com.heroicgameslauncher.hgl
