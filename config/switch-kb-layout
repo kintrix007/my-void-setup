@@ -28,7 +28,7 @@ current=`setxkbmap -query | grep layout | tr -s ' ' | cut -d' ' -f2`
 # Otherwise cicle through them
 if [[ -n "$1" ]]; then
 	if [[ "$LAYOUTS" =~ .*"$1".*  ]]; then
-		setxkbmap 
+		setxkbmap $1
 		echo $1
 	else
 		echo "'$1' is not added as a layout in  '~/.kblayouts'"
