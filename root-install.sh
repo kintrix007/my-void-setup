@@ -72,7 +72,7 @@ xbps-install -y xorg picom xinit rofi rofi-calc rofi-emoji xmobar pipewire libsp
 	xdg-utils xdg-user-dirs xbg-desktop-portal
 
 # Install fonts
-xbps-install -y font-adobe-source-code-pro font-fira-ttf font-firacode fonts-roboto-ttf noto-fonts-ttf noto-fonts-emoji noto-fonts-ttf-extra ttf-ubuntu-font-family
+xbps-install -y noto-fonts-ttf noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf-extra font-fira-ttf font-firacode fonts-roboto-ttf font-adobe-source-code-pro ttf-ubuntu-font-family
 
 # Xmonad build dependencies
 xbps-install -y gcc stack ncurses-libtinfo-libs ncurses-libtinfo-devel libX11-devel libXft-devel libXinerama-devel libXrandr-devel libXScrnSaver-devel pkg-config
