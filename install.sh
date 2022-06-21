@@ -60,13 +60,57 @@ EOF
 cat << EOF > ~/.local/bin/xbps-updates
 #!/bin/bash
 
-packages=`xbps-install -Sun | tr -s " " | cut -d' ' -f2 | tr $'\n' ' '`
-if [[ "$1" == "-c" ]] || [[ "$1" == "--count" ]]; then
-	echo $packages | wc -w
+packages=\`xbps-install -Sun | tr -s " " | cut -d' ' -f2 | tr $'\\n' ' '\`
+if [[ "\$1" == "-c" ]] || [[ "\$1" == "--count" ]]; then
+	echo \$packages | wc -w
 else
-	echo $packages
+	echo \$packages
 fi
 EOF
+
+# Add 'switch-kb-layout' utility to PATH
+cat << EOF > ~/.local/bin/switch-kb-layout
+#!/bin/bash
+
+# Load layouts from the config file
+LAYOUTS=\`sed 's/#.*//' ~/.kblayouts 2>/dev/null\`
+
+# Set a default if it does not exist
+[[ "\$?" != 0 ]] && LAYOUTS='us hu'
+
+cycle() {
+	local next=no
+	for lay in \$LAYOUTS; do
+		if [[ "\$next" == yes ]]; then
+			setxkbmap \$lay
+			echo \$lay
+			return
+		fi
+		[[ "\$lay" == "\$1" ]] && next=yes
+	done
+
+	local first=\`echo \$LAYOUTS | cut -d' ' -f1\`
+	setxkbmap \$first
+	echo \$first
+}
+
+current=\`setxkbmap -query | grep layout | tr -s ' ' | cut -d' ' -f2\`
+
+# If there is an argument, choose that layout
+# Otherwise cicle through them
+if [[ -n "\$1" ]]; then
+	if [[ "\$LAYOUTS" =~ .*"\$1".*  ]]; then
+		setxkbmap $1
+		echo \$1
+	else
+		echo "'\$1' is not added as a layout in  '~/.kblayouts'"
+		exit 1
+	fi
+else
+	cycle "\$current"
+fi
+EOF
+
 
 # Setting up graphical session
 builddir=~/bin
@@ -91,4 +135,6 @@ echo
 echo ".-------------------------------------------."
 echo "| Please reboot to fully apply the changes. |"
 echo "'-------------------------------------------'"
+
+
 
