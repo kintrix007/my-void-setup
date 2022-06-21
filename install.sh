@@ -37,6 +37,14 @@ stack install
 ln -s $builddir/stack.yaml ~/.config/xmonad
 popd
 
+# Set up 'void-packages' with 'xbps-src'
+git clone https://github.com/void-linux/void-packages.git ~/void-packages
+pushd ~/void-packages
+echo 'XBPS_ALLOW_RESTRICTED=yes' > etc/conf
+./xbps-src binary-bootstrap
+#./xbps-src pkg msttcorefonts
+popd
+
 # Install flatpak packages
 packages=`sed s/#.*// ./flatpak-list`
 # Installing with a for loop to prevent simply installing 'flathub'
