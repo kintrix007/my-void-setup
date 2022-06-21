@@ -49,7 +49,7 @@ popd
 packages=`sed s/#.*// ./flatpak-list`
 # Installing with a for loop to prevent simply installing 'flathub'
 for $pack in $packages; do
-	flatpak install flathub $pack -y
+	flatpak install flathub $pack -y --noninteractive
 done
 
 echo
