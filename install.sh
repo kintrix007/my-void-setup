@@ -25,8 +25,9 @@ cp -v $CONF/switch-kb-layout ~/.local/bin
 
 # Setting up graphical session
 builddir=~/bin
-mkdir -p ~/.config/xmonad
+mkdir -p ~/.config/
 git clone https://github.com/kintrix007/my-xmonad-setup ~/.config/xmonad
+git clone https://github.com/kintrix007/my-rofi-setup ~/.config/rofi
 mkdir -p $builddir
 pushd $builddir
 git clone https://github.com/xmonad/xmonad
