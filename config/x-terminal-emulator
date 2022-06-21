@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Adding this to the PATH could help with
+# detecting the default terminal emulator
+
+if [[ -n "$TERMINAL" ]]; then
+	echo $TERMINAL
+else
+	exit 1
+fi
