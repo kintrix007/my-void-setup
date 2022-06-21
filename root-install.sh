@@ -68,7 +68,10 @@ echo Adding flathub...
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Install packages for graphical interface
-xbps-install -y xorg xinit dmenu xmobar pipewire libspa-bluetooth
+xbps-install -y xorg xdg-utils xdg-user-dirs xbg-desktop-portal xinit rofi rofi-calc rofi-emoji xmobar pipewire libspa-bluetooth
+
+# Install fonts
+xbps-install -y font-adobe-source-code-pro font-fira-ttf font-firacode fonts-roboto-ttf noto-fonts-ttf noto-fonts-emoji noto-fonts-ttf-extra ttf-ubuntu-font-family
 
 # Xmonad build dependencies
 xbps-install -y gcc stack ncurses-libtinfo-libs ncurses-libtinfo-devel libX11-devel libXft-devel libXinerama-devel libXrandr-devel libXScrnSaver-devel pkg-config
@@ -77,3 +80,4 @@ ln -s /lib/libncurses.so.6.* /lib/libtinfo.so.6
 # Install user packages
 packages=`sed s/#.*// ./xbps-list`
 xbps-install -y $packages
+xbps-pkgdb -m manual $packages -v

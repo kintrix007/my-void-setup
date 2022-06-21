@@ -15,6 +15,7 @@ git
 github-cli
 vim
 ffmpeg
+xdotool
 htop
 neofetch
 zip unzip
