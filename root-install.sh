@@ -69,7 +69,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 # Install packages for graphical interface
 xbps-install -y xorg picom xinit rofi rofi-calc rofi-emoji xmobar pipewire libspa-bluetooth \
-	xdg-utils xdg-user-dirs xbg-desktop-portal
+	xdg-utils xdg-user-dirs xbg-desktop-portal xsel
 
 # Install fonts
 xbps-install -y noto-fonts-ttf noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf-extra font-fira-ttf font-firacode liberation-fonts-ttf fonts-roboto-ttf font-adobe-source-code-pro ttf-ubuntu-font-family
