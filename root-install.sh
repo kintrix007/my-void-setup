@@ -65,14 +65,20 @@ xbps-install -S
 EOF
 chmod +x /etc/cron.daily/xbps-sync
 
-# Set up flatpak
-xbps-install -y flatpak
-echo Adding flathub...
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+# Set up pipewire
+xbps-install -y pipewire alsa-pipewire wireplumber libspa-bluetooth
+mkdir /etc/pipewire
+cp /usr/share/pipewire/pipewire.conf /etc/pipewire/
+sed -i 's|{ path = "/usr/bin/pipewire-media-session" args = "" }|{ path = "/usr/bin/wireplumber" args = "" }\n    { path = "/usr/bin/pipewire" args = "-c pipewire-pulse.conf" }|' /etc/pipewire/pipewire.conf
+# The following would probably do the same, but likely less stable
+#sudo sed -i 's|{ path = "/usr/bin/pipewire-media-session" args = "" }|{ path = "/usr/bin/wireplumber" args = "" }|' /etc/pipewire/pipewire.conf
+#sudo sed -i 's|#{ path = "/usr/bin/pipewire" args = "-c pipewire-pulse.conf" }|{ path = "/usr/bin/pipewire" args = "-c pipewire-pulse.conf" }|' /etc/pipewire/pipewire.conf
+mkdir -p /etc/alsa/conf.d
+ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
+ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 
 # Install packages for graphical interface
 xbps-install -y xmobar xorg picom xinit rofi rofi-calc rofi-emoji \
-	pipewire wireplumber libspa-bluetooth \
 	lxsession xdg-utils xdg-user-dirs xbg-desktop-portal xsel
 
 # Install fonts
@@ -82,9 +88,14 @@ xbps-install -y noto-fonts-ttf noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf-ex
 xbps-install -y gcc stack ncurses-libtinfo-libs ncurses-libtinfo-devel libX11-devel libXft-devel libXinerama-devel libXrandr-devel libXScrnSaver-devel pkg-config
 ln -s /lib/libncurses.so.6.* /lib/libtinfo.so.6
 
-# For xbps-src
+# Dependencies for xbps-src
 xbps-install -y curl
 xbps-pkgdb -m manual curl
+
+# Set up flatpak
+xbps-install -y flatpak
+echo Adding flathub...
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Install user packages
 packages=`sed s/#.*// ./xbps-list`
