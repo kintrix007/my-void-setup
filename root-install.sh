@@ -39,10 +39,10 @@ for serv in $services; do
 done
 
 # Set up NetworkManager
-xbps-install -y NetworkManager
+xbps-install -y NetworkManager network-manager-applet
 ln -s /etc/sv/NetworkManager /var/service
-touch /etc/sv/dhcpcd/down
 sv down dhcpcd
+sv down wpa_supplicant
 
 # Set up bash environment
 cat << EOF > /etc/bash/bashrc.d/bash_completion.sh
