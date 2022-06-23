@@ -78,7 +78,7 @@ ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
 ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
 
 # Install packages for graphical interface
-xbps-install -y xmobar xorg picom xinit rofi rofi-calc rofi-emoji \
+xbps-install -y xmobar xorg picom xinit rofi rofi-calc rofi-emoji papirus-icon-theme \
 	lxsession xdg-utils xdg-user-dirs xbg-desktop-portal xsel
 
 # Install fonts
