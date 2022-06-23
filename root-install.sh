@@ -38,6 +38,12 @@ for serv in $services; do
 	sv up $serv
 done
 
+# Set up NetworkManager
+xbps-install -y NetworkManager
+ln -s /etc/sv/NetworkManager /var/service
+touch /etc/sv/dhcpcd/down
+sv down dhcpcd
+
 # Set up bash environment
 cat << EOF > /etc/bash/bashrc.d/bash_completion.sh
 # bash_completion.sh
