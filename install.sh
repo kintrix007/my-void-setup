@@ -21,7 +21,10 @@ cp -v $CONF/.xinitrc ~/
 cp -v $CONF/xbps-updates ~/.local/bin/
 
 # Add 'switch-kb-layout' utility to PATH
-cp -v $CONF/switch-kb-layout ~/.local/bin
+cp -v $CONF/switch-kb-layout ~/.local/bin/
+
+# Add 'x-terminal-emulator' utility to PATH
+cp -v $CONF/x-terminal-emulator ~/.local/bin/
 
 # Setting up graphical session
 builddir=~/bin
