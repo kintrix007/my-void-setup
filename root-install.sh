@@ -27,8 +27,11 @@ xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 xbps-install -y git bash-completion
 
 # Add and enable services
-services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} isc-ntpd tlp dbus elogind bluetoothd`
-xbps-install -y socklog-void snooze ntp tlp dbus elogind bluez
+services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} \
+	isc-ntpd tlp dbus elogind bluetoothd rtkit polkitd`
+	
+xbps-install -y socklog-void snooze ntp tlp dbus elogind bluez \
+	rtkit polkit
 
 for serv in $services; do
 	[[ -L /var/service/$serv ]] || ln -s /etc/sv/$serv /var/service/
@@ -68,7 +71,8 @@ echo Adding flathub...
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Install packages for graphical interface
-xbps-install -y xorg picom xinit rofi rofi-calc rofi-emoji xmobar pipewire libspa-bluetooth \
+xbps-install -y xmobar xorg picom xinit rofi rofi-calc rofi-emoji \
+	pipewire wireplumber libspa-bluetooth \
 	xdg-utils xdg-user-dirs xbg-desktop-portal xsel
 
 # Install fonts
