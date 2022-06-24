@@ -80,8 +80,8 @@ sed -i 's|{ path = "/usr/bin/pipewire-media-session" args = "" }|{ path = "/usr/
 #sudo sed -i 's|{ path = "/usr/bin/pipewire-media-session" args = "" }|{ path = "/usr/bin/wireplumber" args = "" }|' /etc/pipewire/pipewire.conf
 #sudo sed -i 's|#{ path = "/usr/bin/pipewire" args = "-c pipewire-pulse.conf" }|{ path = "/usr/bin/pipewire" args = "-c pipewire-pulse.conf" }|' /etc/pipewire/pipewire.conf
 mkdir -p /etc/alsa/conf.d
-ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d
-ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d
+ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d/
+ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
 
 # Install packages for graphical interface
 xbps-install -y xmobar xorg picom xinit rofi rofi-calc rofi-emoji papirus-icon-theme \
