@@ -8,29 +8,15 @@ if [[ $? != 0 ]]; then
 	exit
 fi
 
-CONF=./config
-
-# Copy config files to home directory
-cp -v $CONF/.bash_profile ~/
-cp -v $CONF/.bashrc ~/
-cp -v $CONF/.bash_aliases ~/
-cp -v $CONF/.flatpak_aliases ~/
-cp -v $CONF/.xinitrc ~/
-
-# Add 'xbps-updates' utility script to PATH
-cp -v $CONF/xbps-updates ~/.local/bin/
-
-# Add 'switch-kb-layout' utility to PATH
-cp -v $CONF/switch-kb-layout ~/.local/bin/
-
-# Add 'x-terminal-emulator' utility to PATH
-cp -v $CONF/x-terminal-emulator ~/.local/bin/
+# Setting up dotfiles
+git clone https://github.com/kintrix007/dotfiles ~/dotfiles
+~/dotfiles/install.sh
 
 # Setting up graphical session
-builddir=~/bin
-mkdir -p ~/.config/
-git clone https://github.com/kintrix007/my-xmonad-setup ~/.config/xmonad
-git clone https://github.com/kintrix007/my-rofi-setup ~/.config/rofi
+builddir=~/bin/xmonad
+#mkdir -p ~/.config/
+#git clone https://github.com/kintrix007/my-xmonad-setup ~/.config/xmonad
+#git clone https://github.com/kintrix007/my-rofi-setup ~/.config/rofi
 mkdir -p $builddir
 pushd $builddir
 git clone https://github.com/xmonad/xmonad
@@ -40,7 +26,7 @@ stack install
 ln -s $builddir/stack.yaml ~/.config/xmonad
 popd
 
-# Set up 'void-packages' with 'xbps-src'
+# Setting up xbps-src
 git clone https://github.com/void-linux/void-packages.git ~/void-packages
 pushd ~/void-packages
 echo 'XBPS_ALLOW_RESTRICTED=yes' > etc/conf
