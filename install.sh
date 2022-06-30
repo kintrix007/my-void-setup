@@ -42,6 +42,8 @@ for pack in $packages; do
 done
 
 echo
-echo ".-------------------------------------------."
-echo "| Please reboot to fully apply the changes. |"
-echo "'-------------------------------------------'"
+echo " .-------------------------------------------. "
+echo " |   Make sure to switch to NetworkManager.  | "
+echo " | - - - - - - - - - - - - - - - - - - - - - | "
+echo " | Please reboot to fully apply the changes. | "
+echo " '-------------------------------------------' "
