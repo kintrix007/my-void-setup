@@ -40,9 +40,8 @@ done
 
 # Set up NetworkManager
 xbps-install -y NetworkManager network-manager-applet
-ln -s /etc/sv/NetworkManager /var/service
-sv down dhcpcd
-sv down wpa_supplicant
+touch /etc/sv/NetworkManager/down
+ln -s /etc/sv/NetworkManager /var/service/
 
 # Set up bash environment
 cat << EOF > /etc/bash/bashrc.d/bash_completion.sh
@@ -72,7 +71,7 @@ EOF
 chmod +x /etc/cron.daily/xbps-sync
 
 # Set up pipewire
-xbps-install -y pipewire alsa-pipewire wireplumber libspa-bluetooth
+xbps-install -y pipewire alsa-pipewire wireplumber pamixer pulsemixer libspa-bluetooth
 mkdir /etc/pipewire
 cp /usr/share/pipewire/pipewire.conf /etc/pipewire/
 sed -i 's|{ path = "/usr/bin/pipewire-media-session" args = "" }|{ path = "/usr/bin/wireplumber" args = "" }\n    { path = "/usr/bin/pipewire" args = "-c pipewire-pulse.conf" }|' /etc/pipewire/pipewire.conf
