@@ -1,10 +1,10 @@
 # Drivers
-#intel-ucode linux-firmware-intel intel-video-accel mesa-intel-dri
-#nvidia nv-codec-headers mesa-nouveau-dri
-#mesa-vulkan-radeon linux-firmware-amd
-#mesa-dri
-#mesa-vaapi mesa-vdpau
-#vulkan-loader
+intel-ucode linux-firmware-intel intel-video-accel mesa-intel-dri
+nvidia nv-codec-headers mesa-nouveau-dri
+mesa-vulkan-radeon linux-firmware-amd
+mesa-dri
+mesa-vaapi mesa-vdpau
+vulkan-loader
 
 # System tools
 xtools
@@ -13,12 +13,15 @@ alacritty
 # Utilities
 git
 github-cli
+gnome-keyring
+gparted
 vim
 ffmpeg
 xdotool
-htop
+htop nvtop
 neofetch
 zip unzip
+perl-rename
 xz
 
 ## Graphical tools
@@ -26,15 +29,16 @@ xz
 # Utilities
 #Thunar
 #thunar-volman
-#nomacs
-#vlc
-#mpv
-#speedcrunch
+nomacs
+vlc
+mpv
+speedcrunch
+glipgrab
 
 # Graphics
-#zathura
-#gimp
+zathura
+gimp
 
 # Development
-#vscode
-#kwrite
+vscode
+kwrite

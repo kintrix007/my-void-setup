@@ -28,10 +28,12 @@ xbps-install -y git bash-completion
 
 # Add and enable services
 services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} \
-	isc-ntpd tlp dbus elogind bluetoothd rtkit polkitd`
+	isc-ntpd tlp dbus elogind bluetoothd rtkit polkitd \
+	popcorn`
 	
 xbps-install -y socklog-void snooze ntp tlp dbus elogind bluez \
-	rtkit polkit
+	rtkit polkit \
+	PopCorn
 
 for serv in $services; do
 	[[ -L /var/service/$serv ]] || ln -s /etc/sv/$serv /var/service/
