@@ -86,8 +86,9 @@ ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
 
 # Install packages for graphical interface
 xbps-install -y xmobar xorg picom xinit rofi rofi-calc rofi-emoji papirus-icon-theme \
-	lxsession lxappearance xdg-utils xdg-user-dirs xdg-desktop-portal xsel \
-	playerctl
+	lxsession lxappearance xdg-utils xdg-user-dirs xdg-desktop-portal xsel playerctl \
+	zenity
+	
 
 # Install fonts
 xbps-install -y noto-fonts-ttf noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf-extra font-fira-ttf font-firacode liberation-fonts-ttf fonts-roboto-ttf font-adobe-source-code-pro ttf-ubuntu-font-family
