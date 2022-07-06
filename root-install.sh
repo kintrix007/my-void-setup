@@ -106,6 +106,14 @@ xbps-install -y flatpak
 echo Adding flathub...
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
+# Set up nixpkgs
+xbps-install -y nix
+ln -s /etc/sv/nix-daemon /var/service/
+source /etc/profile
+
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+nix-channel --update
+
 # Install user packages
 packages=`sed s/#.*// ./xbps-list`
 xbps-install -y $packages
