@@ -72,9 +72,6 @@ xbps-install -S
 EOF
 chmod +x /etc/cron.daily/xbps-sync
 
-# Set up desktop entries for power options
-cp applications/* /usr/share/applications/
-
 # Set up pipewire
 xbps-install -y pipewire alsa-pipewire wireplumber pamixer pulsemixer libspa-bluetooth
 mkdir /etc/pipewire

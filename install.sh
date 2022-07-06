@@ -8,6 +8,10 @@ if [[ $? != 0 ]]; then
 	exit
 fi
 
+# Copy desktop entries
+mkdir -p ~/.local/share/applications/
+cp ./applications/* ~/.local/share/applications/
+
 # Setting up dotfiles
 git clone https://github.com/kintrix007/dotfiles ~/dotfiles
 ~/dotfiles/install.sh
