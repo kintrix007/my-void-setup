@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Reboot
+GenericName=Power Option
+Comment=Reboot the computer
+Icon=system-reboot
+TryExec=loginctl
+Exec=loginctl reboot
+Terminal=false
+Categories=Power

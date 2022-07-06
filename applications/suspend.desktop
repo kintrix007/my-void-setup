@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Suspend
+GenericName=Power Option
+Comment=Suspend the computer
+Icon=system-suspend
+TryExec=loginctl
+Exec=loginctl suspend
+Terminal=false
+Categories=Power
