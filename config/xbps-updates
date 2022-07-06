@@ -1,8 +1,0 @@
-#!/bin/bash
-
-packages=`xbps-install -Sun | tr -s " " | cut -d' ' -f2 | tr $'\n' ' '`
-if [[ "$1" == "-c" ]] || [[ "$1" == "--count" ]]; then
-	echo $packages | wc -w
-else
-	echo $packages
-fi
