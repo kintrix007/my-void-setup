@@ -27,8 +27,7 @@ xz
 ## Graphical tools
 
 # Utilities
-#Thunar
-#thunar-volman
+pcmanfm gvfs
 nomacs
 vlc
 mpv
