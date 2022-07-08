@@ -85,10 +85,10 @@ ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d/
 ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
 
 # Install packages for graphical interface
-xbps-install -y xmobar xorg picom xinit rofi rofi-calc rofi-emoji papirus-icon-theme \
-	lxsession lxappearance xdg-utils xdg-user-dirs xdg-desktop-portal xsel playerctl \
+xbps-install -y xmobar xorg picom xinit rofi rofi-calc rofi-emoji \
+	lxsession xdg-utils xdg-user-dirs xdg-desktop-portal xsel playerctl \
 	zenity
-	
+xbps-isntall -y arc-theme slim-void-theme breeze-gtk breeze papirus-icon-theme lxappearance
 
 # Install fonts
 xbps-install -y noto-fonts-ttf noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf-extra font-fira-ttf font-firacode liberation-fonts-ttf fonts-roboto-ttf font-adobe-source-code-pro ttf-ubuntu-font-family
@@ -103,16 +103,13 @@ xbps-pkgdb -m manual curl
 
 # Set up flatpak
 xbps-install -y flatpak
-echo Adding flathub...
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add --if-not-exists kdeapps https://distribute.kde.org/kdeapps.flatpakrepo
 
 # Set up nixpkgs
 xbps-install -y nix
 ln -s /etc/sv/nix-daemon /var/service/
 source /etc/profile
-
-nix-channel --add https://nixos.org/channels/nixpkgs-unstable
-nix-channel --update
 
 # Install user packages
 packages=`sed s/#.*// ./xbps-list`

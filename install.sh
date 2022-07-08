@@ -8,6 +8,15 @@ if [[ $? != 0 ]]; then
 	exit
 fi
 
+# Finalize setting up nix
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+nix-channel --update
+
+# Setting up flatpak user part
+flatpak install --noninteractive flathub org.gtk.Gtk3theme.{Arc{,-Dark},Breeze{,-Dark},Adwaita-dark}
+flatpak override --env="GTK_THEME=Arc-Dark" --user # There is a better way
+# See: https://docs.flatpak.org/en/latest/desktop-integration.html#theming
+
 # Copy desktop entries
 mkdir -p ~/.local/share/applications/
 cp ./applications/* ~/.local/share/applications/
@@ -42,7 +51,7 @@ popd
 packages=`sed s/#.*// ./flatpak-list`
 # Installing with a for loop to prevent simply installing 'flathub'
 for pack in $packages; do
-	flatpak install flathub $pack -y --noninteractive
+	flatpak install --noninteractive flathub $pack
 done
 
 echo
