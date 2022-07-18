@@ -7,4 +7,4 @@ Icon=system-shutdown
 TryExec=loginctl
 Exec=loginctl shutdown
 Terminal=false
-Categories=Power
+Categories=Power;System;

@@ -1,10 +1,11 @@
 [Desktop Entry]
 Type=Application
 Name=Suspend
+Keywords=Sleep
 GenericName=Power Option
 Comment=Suspend the computer
 Icon=system-suspend
 TryExec=loginctl
 Exec=loginctl suspend
 Terminal=false
-Categories=Power
+Categories=Power;System;

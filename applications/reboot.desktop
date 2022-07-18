@@ -7,4 +7,4 @@ Icon=system-reboot
 TryExec=loginctl
 Exec=loginctl reboot
 Terminal=false
-Categories=Power
+Categories=Power;System;
