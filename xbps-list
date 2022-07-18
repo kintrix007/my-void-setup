@@ -7,7 +7,7 @@ mesa-vaapi mesa-vdpau
 vulkan-loader
 
 # System tools
-xtools
+#xtools
 alacritty
 
 # Utilities
