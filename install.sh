@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set up root environment + system packages 
-sudo ./root-install.sh
+sudo ./root-install.sh "$USER"
 
 if [[ $? != 0 ]]; then
 	echo Aborted.
