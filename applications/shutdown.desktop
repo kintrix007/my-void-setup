@@ -5,6 +5,6 @@ GenericName=Power Option
 Comment=Shut down the computer
 Icon=system-shutdown
 TryExec=loginctl
-Exec=loginctl shutdown
+Exec=loginctl poweroff
 Terminal=false
 Categories=Power;System;
