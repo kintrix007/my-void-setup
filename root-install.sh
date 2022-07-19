@@ -1,5 +1,9 @@
 #!/bin/bash
 
+USER="$1"
+echo $USER
+exit
+
 # Set up hu and nl mirrors
 [[ -d /etc/xbps.d ]] || mkdir -p /etc/xbps.d
 
@@ -13,37 +17,19 @@ repository=https://quantum-mirror.hu/mirrors/pub/voidlinux/current
 repository=https://quantum-mirror.hu/mirrors/pub/voidlinux/current/nonfree
 EOF
 
-# Update xbps
-xbps-install -Suy
-if [[ $? != 0 ]]; then
-	sudo xbps-install -uy xbps
-	xbps-install -Suy
-fi
+# Set up user services
+cat << EOF > /etc/sv/runsvdir-"$USER"
+#!/bin/sh
 
-# Add build-in repos
-xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
+export USER="$USER"
+export HOME="/home/\$USER"
 
-# Install some packages
-xbps-install -y git bash-completion
+groups="\$(id -Gn "\$USER" | tr ' ' ':')"
+svdir="\$HOME/service"
 
-# Add and enable services
-services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} \
-	isc-ntpd tlp dbus elogind bluetoothd rtkit polkitd \
-	popcorn`
-	
-xbps-install -y socklog-void snooze ntp tlp dbus elogind bluez \
-	rtkit polkit \
-	PopCorn
-
-for serv in $services; do
-	[[ -L /var/service/$serv ]] || ln -s /etc/sv/$serv /var/service/
-	sv up $serv
-done
-
-# Set up NetworkManager
-xbps-install -y NetworkManager network-manager-applet
-touch /etc/sv/NetworkManager/down
-ln -s /etc/sv/NetworkManager /var/service/
+exec chpst -u "\$USER:\$groups" runsvdir "\$svdir"
+EOF
+ln -s /etc/sv/runsvdir-"$USER" /var/service/
 
 # Set up bash environment
 cat << EOF > /etc/bash/bashrc.d/bash_completion.sh
@@ -72,6 +58,39 @@ xbps-install -S
 EOF
 chmod +x /etc/cron.daily/xbps-sync
 
+
+# Update xbps
+xbps-install -Suy
+if [[ $? != 0 ]]; then
+	sudo xbps-install -uy xbps
+	xbps-install -Suy
+fi
+
+
+# Add build-in repos
+xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
+
+# Install some packages
+xbps-install -y git bash-completion
+
+# Add and enable services
+services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} \
+	isc-ntpd tlp dbus elogind bluetoothd rtkit polkitd \
+	popcorn`
+
+xbps-install -y socklog-void snooze ntp tlp dbus elogind bluez \
+	rtkit polkit \
+	PopCorn
+
+for serv in $services; do
+	[[ -L /var/service/$serv ]] || ln -s /etc/sv/$serv /var/service/
+done
+
+# Set up NetworkManager, but don't enable it
+xbps-install -y NetworkManager network-manager-applet
+touch /etc/sv/NetworkManager/down
+ln -s /etc/sv/NetworkManager /var/service/
+
 # Set up pipewire
 xbps-install -y pipewire alsa-pipewire wireplumber pamixer pulsemixer libspa-bluetooth
 mkdir /etc/pipewire
@@ -85,7 +104,7 @@ ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d/
 ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
 
 # Install packages for graphical interface
-xbps-install -y xmobar xorg picom xinit rofi rofi-calc rofi-emoji flameshot \
+xbps-install -y xmobar xorg picom xinit rofi rofi-calc rofi-emoji flameshot dunst \
 	lxsession xdg-utils xdg-user-dirs xdg-desktop-portal xsel playerctl \
 	zenity
 xbps-isntall -y arc-theme slim-void-theme breeze-gtk breeze papirus-icon-theme lxappearance
