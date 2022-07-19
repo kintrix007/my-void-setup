@@ -1,8 +1,6 @@
 #!/bin/bash
 
 USER="$1"
-echo $USER
-exit
 
 # Set up hu and nl mirrors
 [[ -d /etc/xbps.d ]] || mkdir -p /etc/xbps.d
