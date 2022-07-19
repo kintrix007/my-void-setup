@@ -13,7 +13,7 @@ nix-channel --add https://nixos.org/channels/nixpkgs-unstable
 nix-channel --update
 
 # Setting up flatpak user part
-flatpak install --noninteractive flathub org.gtk.Gtk3theme.{Arc{,-Dark},Breeze{,-Dark},Adwaita-dark}
+flatpak install --noninteractive flathub org.gtk.Gtk3theme.{Arc{,-Dark},Breeze,Adwaita-dark}
 flatpak override --env="GTK_THEME=Arc-Dark" --user # There is a better way
 # See: https://docs.flatpak.org/en/latest/desktop-integration.html#theming
 
