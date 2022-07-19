@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# For user services
+mkdir ~/service
+
 # Set up root environment + system packages 
 sudo ./root-install.sh "$USER"
 
