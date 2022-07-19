@@ -102,7 +102,7 @@ ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d/
 ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
 
 # Install packages for graphical interface
-xbps-install -y xmobar xorg picom xinit rofi rofi-calc rofi-emoji flameshot dunst \
+xbps-install -y xorg xinit picom xmobar trayer-srg rofi rofi-calc rofi-emoji flameshot dunst \
 	lxsession xdg-utils xdg-user-dirs xdg-desktop-portal xsel playerctl \
 	zenity
 xbps-isntall -y arc-theme slim-void-theme breeze-gtk breeze papirus-icon-theme lxappearance
