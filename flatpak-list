@@ -20,3 +20,6 @@ org.onlyoffice.desktopeditors
 com.valvesoftware.Steam
 com.heroicgameslauncher.hgl
 net.openra.OpenRA
+
+# Other
+com.usebottles.bottles
