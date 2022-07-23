@@ -32,7 +32,7 @@ nomacs
 vlc
 mpv
 speedcrunch
-glipgrab yt-dlp
+clipgrab yt-dlp
 
 # Graphics
 zathura
@@ -41,3 +41,8 @@ gimp
 # Development
 vscode
 kwrite
+
+# Steam
+steam
+libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit
+nvidia-opencl nv-codec-headers nv-codec-headers-32bit nvidia-libs-32bit

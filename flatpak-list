@@ -17,7 +17,7 @@ org.libreoffice.LibreOffice
 org.onlyoffice.desktopeditors
 
 # Games
-com.valvesoftware.Steam
+#com.valvesoftware.Steam
 com.heroicgameslauncher.hgl
 net.openra.OpenRA
 
