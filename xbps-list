@@ -1,6 +1,7 @@
 # Drivers
 intel-ucode linux-firmware-intel intel-video-accel mesa-intel-dri
-nvidia nv-codec-headers mesa-nouveau-dri
+nvidia nv-codec-headers nvidia-opencl
+mesa-nouveau-dri
 mesa-vulkan-radeon linux-firmware-amd
 mesa-dri
 mesa-vaapi mesa-vdpau
@@ -45,4 +46,6 @@ kwrite
 # Steam
 steam
 libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit
-nvidia-opencl nv-codec-headers nv-codec-headers-32bit nvidia-libs-32bit
+nvidia-libs-32bit
+#mesa-dri-32bit
+#nv-codec-headers-32bit
