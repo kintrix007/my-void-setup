@@ -12,6 +12,7 @@ if [[ $? != 0 ]]; then
 fi
 
 # Finalize setting up nix
+source /etc/profile
 nix-channel --add https://nixos.org/channels/nixpkgs-unstable
 nix-channel --update
 
@@ -59,7 +60,5 @@ done
 
 echo
 echo " .-------------------------------------------. "
-echo " |   Make sure to switch to NetworkManager.  | "
-echo " | - - - - - - - - - - - - - - - - - - - - - | "
 echo " | Please reboot to fully apply the changes. | "
 echo " '-------------------------------------------' "

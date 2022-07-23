@@ -2,6 +2,19 @@
 
 USER="$1"
 
+xbps-install-from() {
+	local FILE="$1"
+	local contents=`sed s/#.*// $FILE | tr $'\n' ' ' | tr -s ' '`
+	
+	if ! [[ -n $contents ]]; then
+		echo "Error: File '$FILE' is empty"
+		return
+	fi
+
+	xbps-install -y $contents
+	xbps-pkgdb -m manual $contents -v
+}
+
 # Set up hu and nl mirrors
 [[ -d /etc/xbps.d ]] || mkdir -p /etc/xbps.d
 
@@ -61,36 +74,25 @@ chmod +x /etc/cron.daily/xbps-sync
 xbps-install -Suy
 if [[ $? != 0 ]]; then
 	sudo xbps-install -uy xbps
-	xbps-install -Suy
+	xbps-install -uy
 fi
 
-
-# Add build-in repos
+# Add built-in repos
 xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 
-# Install some packages
-xbps-install -y git bash-completion
+# Install required system packages
+xbps-install-from system-packages
 
-# Add and enable services
+# Enable services
 services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} \
 	isc-ntpd tlp dbus elogind bluetoothd rtkit polkitd \
 	popcorn`
-
-xbps-install -y socklog-void snooze ntp tlp dbus elogind bluez \
-	rtkit polkit \
-	PopCorn
 
 for serv in $services; do
 	[[ -L /var/service/$serv ]] || ln -s /etc/sv/$serv /var/service/
 done
 
-# Set up NetworkManager, but don't enable it
-xbps-install -y NetworkManager network-manager-applet
-touch /etc/sv/NetworkManager/down
-ln -s /etc/sv/NetworkManager /var/service/
-
 # Set up pipewire
-xbps-install -y pipewire alsa-pipewire wireplumber pamixer pulsemixer libspa-bluetooth
 mkdir /etc/pipewire
 cp /usr/share/pipewire/pipewire.conf /etc/pipewire/
 sed -i 's|{ path = "/usr/bin/pipewire-media-session" args = "" }|{ path = "/usr/bin/wireplumber" args = "" }\n    { path = "/usr/bin/pipewire" args = "-c pipewire-pulse.conf" }|' /etc/pipewire/pipewire.conf
@@ -101,34 +103,15 @@ mkdir -p /etc/alsa/conf.d
 ln -s /usr/share/alsa/alsa.conf.d/50-pipewire.conf /etc/alsa/conf.d/
 ln -s /usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/
 
-# Install packages for graphical interface
-xbps-install -y xorg xinit picom xmobar trayer-srg rofi rofi-calc rofi-emoji flameshot dunst \
-	lxsession xdg-utils xdg-user-dirs xdg-desktop-portal xsel playerctl \
-	zenity
-xbps-isntall -y arc-theme slim-void-theme breeze-gtk breeze papirus-icon-theme lxappearance
-
-# Install fonts
-xbps-install -y noto-fonts-ttf noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf-extra font-fira-ttf font-firacode liberation-fonts-ttf fonts-roboto-ttf font-adobe-source-code-pro ttf-ubuntu-font-family
-
 # Xmonad build dependencies
-xbps-install -y gcc stack ncurses-libtinfo-libs ncurses-libtinfo-devel libX11-devel libXft-devel libXinerama-devel libXrandr-devel libXScrnSaver-devel pkg-config
 ln -s /lib/libncurses.so.6.* /lib/libtinfo.so.6
 
-# Dependencies for xbps-src
-xbps-install -y curl
-xbps-pkgdb -m manual curl
-
 # Set up flatpak
-xbps-install -y flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak remote-add --if-not-exists kdeapps https://distribute.kde.org/kdeapps.flatpakrepo
 
 # Set up nixpkgs
-xbps-install -y nix
 ln -s /etc/sv/nix-daemon /var/service/
-source /etc/profile
 
 # Install user packages
-packages=`sed s/#.*// ./xbps-list`
-xbps-install -y $packages
-xbps-pkgdb -m manual $packages -v
+xbps-install-from xbps-list
