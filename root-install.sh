@@ -60,6 +60,20 @@ fstrim /
 EOF
 chmod +x /etc/cron.weekly/fstrim
 
+# Set up weekly nix garbage collection
+[[ -d /etc/cron.weekly ]] || mkdir /etc/cron.weekly/
+cat << EOF > /etc/cron.weekly/nix-collect-garbage
+#!/bin/sh
+
+# Delete all profiles older than 30 days
+# as it's unlikely to be needed
+nix-collect-garbage --delete-older-than 30d
+
+# The following would make all rollbacks impossible instantly
+#nix-collect-garbage -d
+EOF
+chmod +x /etc/cron.weekly/nix-collect-garbage
+
 # Set up daily xbps repository syncing
 [[ -d /etc/cron.daily ]] || mkdir /etc/cron.daily/
 cat << EOF > /etc/cron.daily/xbps-sync
