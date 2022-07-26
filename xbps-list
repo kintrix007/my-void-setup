@@ -2,7 +2,7 @@
 intel-ucode linux-firmware-intel intel-video-accel mesa-intel-dri
 nvidia nv-codec-headers nvidia-opencl
 mesa-nouveau-dri
-mesa-vulkan-radeon linux-firmware-amd
+# mesa-vulkan-radeon linux-firmware-amd
 mesa-dri
 mesa-vaapi mesa-vdpau
 vulkan-loader

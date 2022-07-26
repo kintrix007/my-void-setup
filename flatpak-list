@@ -4,21 +4,21 @@ com.github.tchx84.Flatseal
 # Internet
 org.mozilla.firefox
 org.qutebrowser.qutebrowser
-com.github.Eloston.UngoogledChromium
+#com.github.Eloston.UngoogledChromium
 com.discordapp.Discord
 
 # Development
-org.blender.Blender
-com.axosoft.GitKraken
-org.gnome.Boxes
+#org.blender.Blender
+#com.axosoft.GitKraken
+#org.gnome.Boxes
 
 # Office
 org.libreoffice.LibreOffice
-org.onlyoffice.desktopeditors
+#org.onlyoffice.desktopeditors
 
 # Games
 com.heroicgameslauncher.hgl
-net.openra.OpenRA
+#net.openra.OpenRA
 
 # Other
-com.usebottles.bottles
+#com.usebottles.bottles
