@@ -23,7 +23,7 @@ pipewire alsa-pipewire wireplumber pamixer pulsemixer libspa-bluetooth
 noto-fonts-ttf noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf-extra font-fira-ttf font-firacode liberation-fonts-ttf fonts-roboto-ttf font-adobe-source-code-pro ttf-ubuntu-font-family
 
 # Graphical session
-xorg xinit lxsession xdg-utils xdg-user-dirs xdg-desktop-portal xsel playerctl
+xorg hsetroot xinit lxsession xdg-utils xdg-user-dirs xdg-desktop-portal xsel playerctl
 
 picom xmobar trayer-srg rofi rofi-calc rofi-emoji flameshot dunst zenity
 
