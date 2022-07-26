@@ -1,3 +1,8 @@
+# flatpak-list
+#
+# Comment or uncomment packages to select or unselect
+# the flatpak packages you wish to install
+
 # Management
 com.github.tchx84.Flatseal
 

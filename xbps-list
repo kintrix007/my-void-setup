@@ -1,3 +1,8 @@
+# xbps-list
+#
+# Comment or uncomment packages to select or unselect
+# the xbps packages you wish to install
+
 # Drivers
 intel-ucode linux-firmware-intel intel-video-accel mesa-intel-dri
 nvidia nv-codec-headers nvidia-opencl
@@ -9,6 +14,7 @@ vulkan-loader
 
 # System tools
 #xtools
+python3
 alacritty
 
 # Utilities
@@ -45,7 +51,7 @@ kwrite
 
 # Steam
 steam
-libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit
+mono libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit
 nvidia-libs-32bit
 #mesa-dri-32bit
 #nv-codec-headers-32bit
