@@ -3,8 +3,14 @@
 # For user services
 mkdir ~/service
 
+cp xbps-list xbps-list.tmp
+cp flatpak-list flatpak-list.tmp
+
+${EDITOR:-vi} xbps-list.tmp
+${EDITOR:-vi} flatpak-list.tmp
+
 # Set up root environment + system packages 
-sudo ./root-install.sh "$USER"
+sudo --preserve-env="USER,HOME,EDITOR" ./root-install.sh
 
 if [[ $? != 0 ]]; then
 	echo Aborted.
@@ -52,8 +58,8 @@ echo 'XBPS_ALLOW_RESTRICTED=yes' > etc/conf
 popd
 
 # Install flatpak packages
-${EDITOR:-vi} flatpak-list
-packages=`sed s/#.*// ./flatpak-list`
+packages=`sed s/#.*// flatpak-list.tmp`
+rm flatpak-list.tmp
 # Installing with a for loop to prevent simply installing 'flathub'
 for pack in $packages; do
 	flatpak install --noninteractive flathub $pack

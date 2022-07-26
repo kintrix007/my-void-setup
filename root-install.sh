@@ -1,7 +1,5 @@
 #!/bin/bash
 
-USER="$1"
-
 xbps-install-from() {
 	local FILE="$1"
 	local contents=`sed s/#.*// $FILE | tr $'\n' ' ' | tr -s ' '`
@@ -128,5 +126,10 @@ flatpak remote-add --if-not-exists kdeapps https://distribute.kde.org/kdeapps.fl
 ln -s /etc/sv/nix-daemon /var/service/
 
 # Install user packages
-${EDITOR:-vi} xbps-list
-xbps-install-from xbps-list
+echo
+echo "-----"
+echo "Installing user specified packages..."
+echo "-----"
+echo
+xbps-install-from xbps-list.tmp
+rm xbps-list.tmp
