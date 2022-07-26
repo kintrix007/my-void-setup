@@ -52,6 +52,7 @@ echo 'XBPS_ALLOW_RESTRICTED=yes' > etc/conf
 popd
 
 # Install flatpak packages
+${EDITOR:-vi} flatpak-list
 packages=`sed s/#.*// ./flatpak-list`
 # Installing with a for loop to prevent simply installing 'flathub'
 for pack in $packages; do

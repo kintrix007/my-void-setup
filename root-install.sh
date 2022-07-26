@@ -128,4 +128,5 @@ flatpak remote-add --if-not-exists kdeapps https://distribute.kde.org/kdeapps.fl
 ln -s /etc/sv/nix-daemon /var/service/
 
 # Install user packages
+${EDITOR:-vi} xbps-list
 xbps-install-from xbps-list
