@@ -4,7 +4,7 @@ xbps-install-from() {
 	local FILE="$1"
 	local contents=`sed s/#.*// $FILE | tr $'\n' ' ' | tr -s ' '`
 	
-	if ! [[ -n $contents ]]; then
+	if ! [[ -n "$contents" ]]; then
 		echo "Error: File '$FILE' is empty"
 		return
 	fi
