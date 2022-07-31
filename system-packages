@@ -8,7 +8,7 @@ git
 
 # Package managers
 flatpak
-nix
+nix # Apparently there is a problem with the xbps version?
 
 # Network
 NetworkManager network-manager-applet
