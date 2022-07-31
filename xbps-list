@@ -14,7 +14,7 @@ vulkan-loader
 
 # System tools
 #xtools
-python3
+python3 python3-pip
 alacritty
 
 # Utilities
