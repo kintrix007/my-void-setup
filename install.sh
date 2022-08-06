@@ -46,7 +46,7 @@ popd
 # Setting up xbps-src
 git clone https://github.com/void-linux/void-packages.git ~/void-packages
 pushd ~/void-packages
-echo 'XBPS_ALLOW_RESTRICTED=yes' > etc/conf
+echo 'XBPS_ALLOW_RESTRICTED=yes' > ./etc/conf
 ./xbps-src binary-bootstrap
 #./xbps-src pkg msttcorefonts
 popd
