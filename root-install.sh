@@ -115,3 +115,5 @@ flatpak remote-add --if-not-exists kdeapps https://distribute.kde.org/kdeapps.fl
 
 # Set up nixpkgs
 ln -s /etc/sv/nix-daemon /var/service/
+
+exit 0
