@@ -17,7 +17,8 @@ NetworkManager network-manager-applet
 socklog-void snooze ntp tlp dbus elogind bluez rtkit polkit PopCorn
 
 # Sound
-pipewire alsa-pipewire wireplumber pamixer pulsemixer libspa-bluetooth
+pipewire alsa-pipewire wireplumber libspa-bluetooth
+pamixer pulsemixer pavucontrol
 
 # Fonts
 noto-fonts-ttf noto-fonts-cjk noto-fonts-emoji noto-fonts-ttf-extra font-fira-ttf font-firacode liberation-fonts-ttf fonts-roboto-ttf font-adobe-source-code-pro ttf-ubuntu-font-family
