@@ -6,9 +6,12 @@ bash-completion
 # For building from source
 git
 
+# Easier per-directory environments, plays well with nix
+direnv
+
 # Package managers
 flatpak
-nix # Apparently there is a problem with the xbps version?
+nix # Apparently there might be a problem with the xbps version?
 
 # Network
 NetworkManager network-manager-applet
