@@ -3,12 +3,6 @@
 # For user services
 mkdir ~/service
 
-cp xbps-list xbps-list.tmp
-cp flatpak-list flatpak-list.tmp
-
-${EDITOR:-vi} xbps-list.tmp
-${EDITOR:-vi} flatpak-list.tmp
-
 # Set up root environment + system packages 
 sudo --preserve-env="USER,HOME,EDITOR" ./root-install.sh
 
@@ -56,14 +50,6 @@ echo 'XBPS_ALLOW_RESTRICTED=yes' > etc/conf
 ./xbps-src binary-bootstrap
 #./xbps-src pkg msttcorefonts
 popd
-
-# Install flatpak packages
-packages=`sed s/#.*// flatpak-list.tmp`
-rm flatpak-list.tmp
-# Installing with a for loop to prevent simply installing 'flathub'
-for pack in $packages; do
-	flatpak install --noninteractive flathub $pack
-done
 
 echo
 echo " .-------------------------------------------. "

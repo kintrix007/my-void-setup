@@ -1,17 +1,6 @@
 #!/bin/bash
 
-xbps-install-from() {
-	local FILE="$1"
-	local contents=`sed s/#.*// $FILE | tr $'\n' ' ' | tr -s ' '`
-	
-	if ! [[ -n "$contents" ]]; then
-		echo "Error: File '$FILE' is empty"
-		return
-	fi
-
-	xbps-install -y $contents
-	xbps-pkgdb -m manual $contents -v
-}
+source ./helpers.sh
 
 # Set up hu and nl mirrors
 [[ -d /etc/xbps.d ]] || mkdir -p /etc/xbps.d
@@ -27,7 +16,8 @@ repository=https://quantum-mirror.hu/mirrors/pub/voidlinux/current/nonfree
 EOF
 
 # Set up user services
-cat << EOF > /etc/sv/runsvdir-"$USER"
+mkdir /etc/sv/runsvdir-"$USER"
+cat << EOF > /etc/sv/runsvdir-"$USER"/run
 #!/bin/sh
 
 export USER="$USER"
@@ -38,6 +28,7 @@ svdir="\$HOME/service"
 
 exec chpst -u "\$USER:\$groups" runsvdir "\$svdir"
 EOF
+chmod +x /etc/sv/runsvdir-"$USER"/run
 ln -s /etc/sv/runsvdir-"$USER" /var/service/
 
 # Set up bash environment
@@ -64,7 +55,7 @@ cat << EOF > /etc/cron.weekly/nix-collect-garbage
 #!/bin/sh
 
 # Delete all profiles older than 30 days
-# as it's unlikely to be needed
+# as it is unlikely to be needed
 nix-collect-garbage --delete-older-than 30d
 
 # The following would make all rollbacks impossible instantly
@@ -93,7 +84,7 @@ fi
 xbps-install -y void-repo-nonfree void-repo-multilib void-repo-multilib-nonfree
 
 # Install required system packages
-xbps-install-from system-packages
+xbps-install-from ./system-packages
 
 # Enable services
 services=`echo socklog-unix nanoklogd snooze-{hourly,daily,weekly,monthly} \
@@ -124,12 +115,3 @@ flatpak remote-add --if-not-exists kdeapps https://distribute.kde.org/kdeapps.fl
 
 # Set up nixpkgs
 ln -s /etc/sv/nix-daemon /var/service/
-
-# Install user packages
-echo
-echo "-----"
-echo "Installing user specified packages..."
-echo "-----"
-echo
-xbps-install-from xbps-list.tmp
-rm xbps-list.tmp
