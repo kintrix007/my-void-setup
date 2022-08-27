@@ -20,21 +20,21 @@ alacritty
 git
 github-cli
 gnome-keyring
-gparted
 vim
-ffmpeg ffmpeg-thumbs
+ffmpeg ffmpegthumbs
 xdotool
 htop nvtop
 neofetch
 zip unzip
 perl-rename
 xz
+curl wget
 
 # Spelling
 hunspell-en_GB
 hunspell-en_US
 
-# Dev env
+# Development environment
 gcc
 ghc
 haskell-language-server
@@ -55,6 +55,7 @@ lua-devel
 ## Graphical tools
 
 # Utilities
+gparted
 pcmanfm gvfs
 nomacs
 vlc
