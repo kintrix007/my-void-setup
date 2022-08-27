@@ -22,7 +22,7 @@ github-cli
 gnome-keyring
 gparted
 vim
-ffmpeg
+ffmpeg ffmpeg-thumbs
 xdotool
 htop nvtop
 neofetch
