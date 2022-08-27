@@ -14,7 +14,6 @@ vulkan-loader
 
 # System tools
 #xtools
-python3 python3-pip
 alacritty
 
 # Utilities
@@ -30,6 +29,28 @@ neofetch
 zip unzip
 perl-rename
 xz
+
+# Spelling
+hunspell-en_GB
+hunspell-en_US
+
+# Dev env
+gcc
+ghc
+haskell-language-server
+go
+go-langserver
+nasm
+nodejs
+python3-devel
+ruby-devel
+vala-devel
+vala-language-server
+nim
+lua-devel
+#haxe  # Is not in the repos
+#v     # Is not in the repos
+#godot # Better to get a specific version
 
 ## Graphical tools
 
