@@ -20,8 +20,9 @@ flatpak-install-from flatpak-list.tmp
 rm xbps-list.tmp flatpak-list.tmp
 
 # Download and install itch Desktop client
+pushd `mktemp -d`
 OUTFILE="itch-setup-linux-amd64.zip"
 wget "https://broth.itch.ovh/itch-setup/linux-amd64/1.26.0/archive/default" -O "$OUTFILE" -q
 unzip "$OUTFILE" -d ~/.local/bin/
-rm "$OUTFILE"
 ~/.local/bin/itch-setup --silent
+popd
