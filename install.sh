@@ -51,13 +51,6 @@ echo 'XBPS_ALLOW_RESTRICTED=yes' > ./etc/conf
 #./xbps-src pkg msttcorefonts
 popd
 
-# Download and install itch Desktop client
-OUTFILE="itch-setup-linux-amd64.zip"
-wget "https://broth.itch.ovh/itch-setup/linux-amd64/1.26.0/archive/default" -O "$OUTFILE" -q
-unzip "$OUTFILE" -d ~/.local/bin/
-rm "$OUTFILE"
-~/.local/bin/itch-setup --silent
-
 echo
 echo " .-------------------------------------------. "
 echo " | Please reboot to fully apply the changes. | "
