@@ -1,5 +1,8 @@
 # system-packages
 
+# Terminal
+alacritty
+
 # General System Utilities
 bash-completion
 
