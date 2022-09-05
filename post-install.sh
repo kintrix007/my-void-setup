@@ -3,21 +3,20 @@
 . helpers.sh
 
 # Make copies so that the originals stay unmodified
-cp xbps-list xbps-list.tmp
-cp flatpak-list flatpak-list.tmp
+XBPS_TEMP=`mktemp`
+FLATPAK_TEMP=`mktemp`
+cp xbps-list $XBPS_TEMP
+cp flatpak-list $FLATPAK_TEMP
 
 # Ask the user to select the desired packages
-${EDITOR:-vi} xbps-list.tmp
-${EDITOR:-vi} flatpak-list.tmp
+${EDITOR:-vi} $XBPS_TEMP
+${EDITOR:-vi} $FLATPAK_TEMP
 
 # Install selected packages
-sudo ./root-post-install.sh
+sudo --preserve-env="USER,HOME,XBPS_TEMP" ./root-post-install.sh
 
 # Install user-specified flatpak packages
-flatpak-install-from flatpak-list.tmp
-
-# Remove the temporary files
-rm xbps-list.tmp flatpak-list.tmp
+flatpak-install-from $FLATPAK_TEMP
 
 # Download and install itch Desktop client
 pushd `mktemp -d`
@@ -26,3 +25,6 @@ wget "https://broth.itch.ovh/itch-setup/linux-amd64/1.26.0/archive/default" -O "
 unzip "$OUTFILE" -d ~/.local/bin/
 ~/.local/bin/itch-setup --silent
 popd
+
+# Run config of dotfiles
+~/dotfiles/install.sh -c
