@@ -8,14 +8,14 @@ com.github.tchx84.Flatseal
 
 # Internet
 org.mozilla.firefox
-org.qutebrowser.qutebrowser
+#org.qutebrowser.qutebrowser
 #com.github.Eloston.UngoogledChromium
 com.discordapp.Discord
 
 # Development
 #org.blender.Blender
 #com.axosoft.GitKraken
-#org.gnome.Boxes
+org.gnome.Boxes
 
 # Office
 org.libreoffice.LibreOffice
@@ -26,4 +26,4 @@ com.heroicgameslauncher.hgl
 #net.openra.OpenRA
 
 # Other
-# tecom.usebottles.bottles
+#tecom.usebottles.bottles
