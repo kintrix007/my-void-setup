@@ -2,5 +2,7 @@
 
 source ./helpers.sh
 
+[[ -z "$XBPS_TEMP" ]] && exit 1
+
 # Install user-specified xbps packages
-xbps-install-from ./xbps-list.tmp
+xbps-install-from $XBPS_TEMP
