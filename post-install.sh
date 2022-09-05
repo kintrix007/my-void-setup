@@ -15,6 +15,11 @@ ${EDITOR:-vi} $FLATPAK_TEMP
 # Install selected packages
 sudo --preserve-env="USER,HOME,XBPS_TEMP" ./root-post-install.sh
 
+if [[ $? != 0 ]]; then
+	echo Aborted.
+	exit
+fi
+
 # Install user-specified flatpak packages
 flatpak-install-from $FLATPAK_TEMP
 
