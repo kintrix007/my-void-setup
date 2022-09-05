@@ -13,7 +13,9 @@ ${EDITOR:-vi} $XBPS_TEMP
 ${EDITOR:-vi} $FLATPAK_TEMP
 
 # Install selected packages
+export XBPS_TEMP
 sudo --preserve-env="USER,HOME,XBPS_TEMP" ./root-post-install.sh
+unset XBPS_TEMP
 
 if [[ $? != 0 ]]; then
 	echo Aborted.
