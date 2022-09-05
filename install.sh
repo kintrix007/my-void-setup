@@ -27,7 +27,7 @@ cp ./applications/* ~/.local/share/applications/
 
 # Setting up dotfiles
 git clone https://github.com/kintrix007/dotfiles ~/dotfiles
-~/dotfiles/install.sh
+~/dotfiles/install.sh -l
 
 # Setting up graphical session
 builddir=~/bin/xmonad
