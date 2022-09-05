@@ -7,23 +7,23 @@
 intel-ucode linux-firmware-intel intel-video-accel mesa-intel-dri
 nvidia nv-codec-headers nvidia-opencl
 mesa-nouveau-dri
-# mesa-vulkan-radeon linux-firmware-amd
+#mesa-vulkan-radeon linux-firmware-amd
 mesa-dri
 mesa-vaapi mesa-vdpau
 vulkan-loader
 
 # System tools
-#xtools
-alacritty
+xtools
 
 # Utilities
+vim
 git
 github-cli
 gnome-keyring
-vim
 ffmpeg ffmpegthumbs
 xdotool
-htop nvtop
+htop
+nvtop
 neofetch
 zip unzip
 perl-rename
@@ -43,7 +43,7 @@ go-langserver
 nasm
 nodejs
 python3-devel
-ruby-devel
+#ruby-devel
 vala-devel
 vala-language-server
 nim
@@ -75,5 +75,5 @@ kwrite
 steam
 mono libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit
 nvidia-libs-32bit
-#mesa-dri-32bit
-#nv-codec-headers-32bit
+mesa-dri-32bit
+nv-codec-headers-32bit
